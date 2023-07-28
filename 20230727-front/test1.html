@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <script>
+        // 定义变量
+        var aa = 100;
+        // 定义函数
+        function hello(a, b) {
+            console.log('a=' + a + ',b=' + b);
+        }
+        // 执行函数：函数名（实参列表）
+        hello('你好', 20);
+        console.log('========================================');
+        // 定义构造函数（如果按照java的思路理解就是类）
+        function Person() {
+            // this表示当前对象引用
+            // js动态给对象创建属性或者函数
+            this.name = '张三';
+            console.log('Person的构造函数被调用了。。。。');
+        }
+        // 通过new Person来创建对象，变量p指向创建对象
+        var person = new Person();
+        console.log(person);
+        console.log('========================================');
+        // 直接调用Person函数，是可以的，只是当作普通函数来使用
+        Person();
+        console.log('========================================');
+        // __proto__ 原型链（所有的对象（包括函数）都有原型链）
+        // prototype 原型对象（只有函数有原型对象）
+        console.log('person的原型链__proto__:');
+        console.log(person.__proto__);
+        console.log('Person函数的原型对象');
+        console.log(Person.prototype);
+        // ===表示严格判断是否相等。数据的类型与值都相等，才返回true 例如 '123'===123 false
+        // == 表示不严格判断是否相等，数据类型可以不同，能够隐形转换 数值相等 返回true 例如 '123'=123 true
+        console.log(person.__proto__ === Person.prototype);//true
+        person.__proto__ = 'aaaaa'//不能修改原型链，代码无效，但是不报错
+        console.log(person.__proto__);
+        // 原型对象的值是可以修改的
+        // {}表示一个对象() var a={} 表示 {}的对象的地址赋值给了变量a
+        Person.prototype = 'bbbb';
+        console.log(Person.prototype);
+        console.log('========================================');
+        var person1 = new Person()
+        console.log(person1.__proto__);
+        console.log(person.__proto__);
+        console.log('========================================');
+        console.log(person.__proto__.__proto__)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

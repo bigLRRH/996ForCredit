@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <script>
+        // 2 Object和Array函数创建对象和数组
+        var obj = new Object();
+        obj.name = "wangwu";
+        obj.age = 40;
+        obj.haha = function () {
+            console.log('haha函数');
+        }
+        console.log(obj.age);
+        obj.haha();
+        console.log("======================");
+        var arr = new Array();
+        arr.push(12);
+        arr.push("aaa");
+        console.log(arr);
+        console.log("======================");
+        obj2 = {};
+        console.log(obj.hasOwnProperty("name"));
+        console.log(obj2.hasOwnProperty("name"));
+        //obj2.__proto__.__proto__ 一直找到Object函数
+        console.log(obj.toString());
+        console.log(obj2.toString());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

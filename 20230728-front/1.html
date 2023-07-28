@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <script>
+        // 创建对象：2种方式，字面量和new Object()
+        // {} 表对象
+        var obj1 = {
+            // 属性 key:value
+            // key是字符串，可以加引号也可以不加引号
+            // 多个keyvalue对值 用逗号分割
+            "name": "zhangsan",
+            age: 20,
+            // 定义函数：key:value,value是function的匿名函数
+            hello: function () {
+                console.log("hello,js面向对象");
+            },
+            // 对象中使用数组
+            arr: [123, "22"],
+            // 对象中存使用对象
+            myObj: {
+                myName: "haha"
+            }
+        };
+        // 调用对象的属性和函数，对象名称.属性名    对象名称.函数名
+        console.log(obj1.name);
+        console.log(obj1.age);
+        obj1.hello();
+        console.log('===========================================================================');
+        //数组对象[]，数组多个值有逗号隔开 
+        // 数组也可存储对象
+        var array = [
+            "lisi", 20, obj1
+        ]
+        console.log(array[0]);
+        console.log(array[2].name);
+        array[2].hello;
+        for (var i = 0; i < array.length; ++i) {
+            console.log(array[i]);
+        }
+        console.log("===对象动态增加属性===");
+        var obj2 = {};
+        // 动态增加
+        obj2.email = "321321@qq.com";
+        obj2.say = function () {
+            console.log("动态增加sy函数");
+        }
+        obj2.myArr = [12, "aa"];
+        console.log(obj2.email);
+        obj2.say();
+        console.log(obj2.myArr);
+        console.log('===============数组也可以增加值============================================================');
+        var arr2 = [];
+        arr2.push(12);
+        arr2.push("bbbb");
+        arr2.push(obj2);
+        console.log(arr2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
