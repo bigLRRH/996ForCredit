@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module">
+        import { email, name } from './test.js';
+        import { mm } from './test1.js';
+        import kk from './test3.js';
+        // as 使用别名
+        // 全部导入
+        import * as test from './test.js';
+        console.log(`邮箱：${email}`);
+        console.log(name);
+        mm();
+        kk();
+        console.log(`${test.name},${test.email},${test.age}`);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

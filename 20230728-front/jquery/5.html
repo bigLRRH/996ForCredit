@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="..\js\jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            // 选择input标签，form下所有子子孙孙的input
+            $("form input").css("background", "red");
+        }
+        function dian1() {
+            // 选择input标签，form下直接的儿子的input
+            $("form>input").css("background", "green");
+        }
+        function dian2() {
+            // 选择input标签，label相邻的input
+            $("label+input").css("background", "blue");
+        }
+        function dian3() {
+            // 选择input标签，label元素之后的所有input
+            $("label~input").css("background", "blue");
+        }
+    </script>
+</head>
+
+<body>
+    <form action="">
+        <input name="name" value="aa" />
+        <input name="name" value="aa" />
+        <label for="">Name</label>
+        <input name="name" />
+        <input name="name" />
+        <input name="name" />
+        <fieldset>
+            <input name="name" value="aa" />
+            <input name="name" value="aa" />
+            <label for="">Newsletter</label>
+            <input name="newsletter">
+            <input name="name" />
+            <input name="name" />
+        </fieldset>
+    </form>
+    <input name="none" />
+    <input type="button" value="点我" onclick="dian()" />
+    <input type="button" value="点我1" onclick="dian1()" />
+    <input type="button" value="点我2" onclick="dian2()" />
+    <input type="button" value="点我3" onclick="dian3()" />
+</body>
+
+</html>

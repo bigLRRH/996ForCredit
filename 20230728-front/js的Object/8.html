@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function method(name, age) {
+            // es5 处理默认值
+            name = name || "李四";
+            age = age || 20;
+            console.log("name=" + name + ",age=" + age);
+        }
+        method("张三", 20);
+        method();
+        console.log("=================================");
+        function method1(name = "王五", age = 5) {
+            console.log("name=" + name + ",age=" + age);
+        }
+        method1("赵六");
+        method1("钱七");
+        method1();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

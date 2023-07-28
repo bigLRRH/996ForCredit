@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="..\js\jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            // 获取DOM对象
+            let divDom = document.getElementById("div1");
+            console.log(divDom);
+            // 把DOM对象转换成jQuery对象
+            let $div = $(divDom);
+            console.log($div);
+            // 通过jQuery对象获取DOM对象
+            let my_divDOM = $div[0];//$div.get(0);
+            console.dir(my_divDOM === divDom);//true 说明是一个对象
+        }   
+    </script>
+</head>
+
+<body>
+    <div id="div1">哈哈哈</div>
+    <input type="button" value="点我" onclick="dian()">
+</body>
+
+</html>

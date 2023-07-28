@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="..\js\jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            $("div[id]").css("background", "red");
+        }
+        function dian2() {
+            $("div[id='div2']").css("background", "blue");
+        }
+        function dian3() {
+            $("div[id!='div2']").css("background", "blue");
+        }
+        function dian4() {
+            $("p[name^='a']").css("background", "yellow");
+        }
+        function dian5() {
+            $("p[name$='e']").css("background", "green");
+        }
+        function dian6() {
+            $("p[name*='dd']").css("font-size", "50px");
+        }
+        function dian7() {
+            $("*[id][name*='dd']").css("font-size", "100px");
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id>div1</div>
+    <div id="div2">div2</div>
+    <div>div3</div>
+    <p name="aa">我是p1</p>
+    <p name="bbcc">我是p2</p>
+    <p name="ddee" id>我是p3</p>
+    <p name="mmddkk">我是p4</p>
+    <p>我是p4</p>
+    <input type="button" value="点我" onclick="dian()">
+    <input type="button" value="点我2" onclick="dian2()">
+    <input type="button" value="点我3" onclick="dian3()">
+    <input type="button" value="点我4" onclick="dian4()">
+    <input type="button" value="点我5" onclick="dian5()">
+    <input type="button" value="点我6" onclick="dian6()">
+    <input type="button" value="点我7" onclick="dian7()">
+</body>
+
+</html>

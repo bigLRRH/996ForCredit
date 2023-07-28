@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const name = "张三";
+        const age = 20;
+        const city = "天津";
+        const stu1 = {
+            name: name,
+            age: age,
+            city: city,
+            show: function () {
+                console.log(this.name + "," + this.age + "," + this.city);
+            }
+        };
+        stu1.show();
+        // 如果属性名和属性值一样可以写成一个，简化操作
+        const stu2 = {
+            name,
+            age,
+            city,
+            // show: function () {
+            //     console.log(this.name + "," + this.age + "," + this.city);
+            // }
+            // 定义函数简化方式(ES6语法)
+            show() {
+                console.log(this.name + "," + this.age + "," + this.city);
+            }
+        };
+        stu2.show();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        let sum0 = function (a, b) {
+            return a * b;
+        }
+        console.log(sum0(10, 20));
+        // 把匿名函数转换成箭头函数
+        let sum1 = (a, b) => {
+            return a + b;
+        }
+        console.log(sum1(20, 30));
+        // 简化前提：当要执行的代码块只有一条return语句时，可省略大括号和return关键字
+        let sum2 = (a, b) => a + b;
+        console.log(sum2(30, 40));
+
+        //当传入的参数只有一个时，可以省略小括号
+        let sum3 = function (x) {
+            return x * x;
+        }
+        console.log(sum3(10));
+        let sum4 = x => x * x;
+        console.log(sum4(20));
+
+        // 当不需要参数时使用空的圆括号
+        let sum5 = function () {
+            return 100 + 100;
+        }
+        let sum6 = () => 100 + 100;
+        console.log(sum6());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
