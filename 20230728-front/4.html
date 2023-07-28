@@ -2,18 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Title</title>
     <script>
         function Person(name, age) {
             this.name = name;
             this.age = age;
-            sayHello = function () {
+            this.sayHello = function () {
                 console.log("name=" + this.name + ",age=" + this.age);
-            }
+            };
         }
-        var person=new Person("zhangsan",20);
-        person.sayHello();
+
+        // 在Person的原型对象增加一个hello函数，这个函数就是所有的通过new Person产生的对象共享函数
+        Person.prototype.hello = function () {
+            console.log("大家好");
+        }
+
+        var person1 = new Person("zhangsan", 20);
+        person1.sayHello();
+        var person2 = new Person("lisi", 30);
+        person2.sayHello();
+        // false 意味着person1的sayHello和person2的sayHello是两个函数，两个函数的功能一模一样，浪费内存，不合理
+        console.log(person1.sayHello === person2.sayHello);
+        // 如何解决
+        person1.hello();
+        person2.hello();
+        console.log(person1.hello === person2.hello);
     </script>
 </head>
 

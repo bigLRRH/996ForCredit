@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function greet(sth) {
+            var fun = function (name) {
+                console.log("sth:" + sth + ",name:" + name);
+            }
+            return fun;
+        }
+        var g = greet("你好");
+        g("张三");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

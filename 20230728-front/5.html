@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // 继承：使用父类的构造函数、属性、函数
+        //理解成父类Person
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.sayHello = function () {
+            console.log("name=" + this.name + ",age=" + this.age);
+        }
+        function Student(name, age, schoolName) {
+            // 使用Person的name和age，不要再定义
+            // this指的是new Student对象的引用
+            // call调用Person函数改变Person中this指向student
+            Person.call(this, name, age);
+            this.schoolName = schoolName;
+        }
+        // Student.prototype.sayHello= function () {
+        //     console.log("name=" + this.name + ",age=" + this.age);
+        // }
+        var p = new Person();
+        Student.prototype = p;//new Student() 对象的__proto__值为p
+        // 扩展自己的函数
+        Student.prototype.goSchool = function () {
+            console.log(this.name + "去" + this.schoolName + "上学");
+        }
+
+        var s1 = new Student("张三", 20, "燕大");
+        var s2 = new Student("李四", 20, "清北");
+        s1.sayHello();
+        s2.sayHello();
+        s1.goSchool();
+        s2.goSchool();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        {
+            // var 是可以重复定义的
+            var i = 0;
+            var i = 1;
+            let j = 10;
+            const k = 20;
+            console.log("i=" + i + ",j=" + j + ",k=" + k);
+        }
+        console.log("i=" + i);
+        // j和k 作用域是块
+        // console.log("j="+j+",k="+k);
+
+        function fun() {
+            var m = 10;
+            console.log("fun内部的m=" + m);
+        }
+        fun();
+        // 报错，var有效范围是 函数
+        console.log("fun外部输出m=" + m);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
