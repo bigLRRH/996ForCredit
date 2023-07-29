@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            //把要添加的html元素转换成jQuery对象
+            let $div = $("<div>你好</div>");
+            //添加$（父元素）.append（子元素的jQuery）父元素下子元素的最后一个位置
+            $(document.body).append($div);
+            let $p = $("<p>我是p标签</p>");
+            $(document.body).prepend($p);//父元素下子元素的第一个位置
+            //子元素对象appendTo父元素的对象或者prependTo
+            let $input = $("<input type='text' value='哈哈'/>");
+            $input.appendTo($(document.body));
+        }
+
+        function dian1() {
+            $("p").after($("<div>你好</div>"));
+            $("p").before("<input type='button' value='测试'/>");
+            $("<input  type='file'/>").insertBefore($("p"));
+        }
+
+    </script>
+</head>
+
+<body>
+    <p>I would like to say:</p>
+    <p>I would like to say: </p>
+    <p>I would like to say:</p>
+    <input type="button" value="点我" onclick="dian()">
+    <input type="button" value="点我1" onclick="dian1()">
+</body>
+
+</html>

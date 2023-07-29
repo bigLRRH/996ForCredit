@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#btnHide").click(function () {
+                $("img").hide(2000);
+            });
+            $("#btnShow").click(function () {
+                $("img").show(2000);
+            });
+            $("#btnToggle").click(function () {
+                $("img").toggle(2000);
+            });
+            $("#btnFadeIn").click(function () {
+                alert("FadeIn完成");
+                $("img").fadeIn(200);
+            });
+            $("#btnFadeOut").click(function () {
+                alert("FadeOut完成");
+                $("img").fadeOut(2000);
+            });
+            $("#btnFadeTo").click(function () {
+                alert("FadeTo完成");
+                $("img").fadeTo(2000, 0.1);
+            });
+            $("#btnFadeToggle").click(function () {
+                alert("FadeToggle完成");
+                $("img").fadeToggle(2000);
+            });
+            $("#btnSlideDown").click(function () {
+                alert("SlideDown完成");
+                $("img").slideDown(2000);
+            });
+            $("#btnSlideUp").click(function () {
+                alert("SlideUp完成");
+                $("img").slideUp(2000);
+            });
+            $("#btnSlideToggle").click(function () {
+                alert("SlideToggle完成");
+                $("img").slideUp(2000);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <img src="img/2.png" alt="aaa">
+    <input type="button" value="图片隐藏" id="btnHide">
+    <input type="button" value="图片显示" id="btnShow">
+    <input type="button" value="图片toggle" id="btnToggle">
+    <input type="button" value="图片fadeIn" id="btnFadeIn">
+    <input type="button" value="图片fadeOut" id="btnFadeOut">
+    <input type="button" value="图片fadeTo" id="btnFadeTo">
+    <input type="button" value="图片fadeToggle" id="btnFadeToggle">
+    <input type="button" value="图片slideDown" id="btnSlideDown">
+    <input type="button" value="图片slideUp" id="btnSlideUp">
+    <input type="button" value="图片slideToggle" id="btnSlideToggle">
+</body>
+
+</html>

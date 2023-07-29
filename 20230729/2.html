@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            $("ul li:nth-child(2)").css("background", "red");
+        }
+        function dian2() {
+            $("ul li:nth-last-child(2)").css("background", "green");
+        }
+        function dian3() {
+            $("ul li:first-child").css("background", "yellow");
+        }
+        function dian4() {
+            $("ul li:only-child").css("background", "blue");
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>John</li>
+        <li>Karl</li>
+        <li>Brandon</li>
+        <li>Brandon</li>
+        <li>Brandon</li>
+    </ul>
+    <ul>
+        <li>Glen</li>
+        <li>Tane</li>
+        <li>Ralph</li>
+        <li>Ralph</li>
+    </ul>
+    <ul>
+        <li>Glen</li>
+    </ul>
+    <input type="button" value="点我" onclick="dian()">
+    <input type="button" value="点我2" onclick="dian2()">
+    <input type="button" value="点我3" onclick="dian3()">
+    <input type="button" value="点我4" onclick="dian4()">
+</body>
+
+</html>

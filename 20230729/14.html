@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#txt").focus(function () {
+                $(this).css("background", "red");
+            });
+            $("#txt1").focusin(function () {
+                $(this).val("aaaaa");
+            });
+            $("#txt").blur(function () {
+                $(this).css("background", "");
+            });
+            $("#txt1").focusout(function () {
+                $(this).val("");
+            });
+            $("select[name='province']").change(function () {
+                alert($(this).val());
+            });
+            $("#btnSubmit").click(function () {
+                // 提交表单的submit函数
+                $("#myForm").submit();
+            });
+            // 提交触发事件
+            $("#myForm").submit(function () {
+                alert("submit被触发了");
+                // 写业务判断数据检查是否通过，不通过return false就会阻止表单提交
+                // 通过return true提交表单
+                return true;
+            });
+            // 事件对象
+            $("#myBtn").click(function () {
+                console.log(event);
+                console.log(event.currentTarget);
+                console.log(event.currentTarget === this);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="button" id="myBtn" value="测试事件对象" />
+    <form action="/aa/bb/cc" method="get" id="myForm">
+        <input type="button" id="btnSubmit" value="提交" />
+    </form>
+    <input type="text" id="txt" />
+    <input type="text" id="txt1" />
+    <select name="province">
+        <option value="天津">天津</option>
+        <option value="河北">河北</option>
+        <option value="山东">山东</option>
+        <option value="四川">四川</option>
+    </select>
+    <!-- <div>
+        <div>
+            <div></div>
+        </div>
+    </div> -->
+    <input type="button" value="点我" onclick="dian()">
+</body>
+
+
+</html>

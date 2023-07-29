@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bg {
+            background: red;
+            font-size: 50px;
+            font-family: "楷体";
+        }
+    </style>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            $("div").addClass("bg");
+        }
+        function dian1() {
+            $("div").removeClass("bg");
+        }
+        function dian2() {
+            $("div").toggleClass("bg");
+        }
+        function dian3() {
+            $("div").css({ "background": "green", "font-size": "3opx", "font-family": "楷体" });
+        }
+
+    </script>
+</head>
+
+<body>
+    <div>你好</div>
+    <div>我好</div>
+    <input type="button" value="addClass" onclick="dian()">
+    <input type="button" value="removeClass" onclick="dian1()">
+    <input type="button" value="toggleClass" onclick="dian2()">
+    <input type="button" value="css操作" onclick="dian3()">
+</body>
+
+</html>

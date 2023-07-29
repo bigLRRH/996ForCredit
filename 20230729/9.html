@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        function ckAll() {
+            let isChecked = $("#ckAll").prop("checked");
+            $(".ck").prop("checked", isChecked);
+        }
+
+        function ck() {
+            let ckCount = $(".ck").length;
+            let ckChecked = $(".ck:checked").length;
+            $("#ckAll").prop("checked", ckCount == ckChecked);
+        }
+
+    </script>
+</head>
+
+<body>
+    <table border="1" cellspacing="0" cellpadding="">
+        <tr>
+            <th> 全 选 / 全 不 选 <input type="checkbox" id="ckAll" onclick="ckAll()" /></th>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="ck" onclick="ck()" />
+            </td>
+            <td>
+                1
+            </td>
+            <td>刘备</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="ck" onclick="ck()" />
+            </td>
+            <td>
+                2
+            </td>
+            <td>关羽</td>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="ck" onclick="ck()" />
+            </td>
+            <td>
+                3
+            </td>
+            <td>张飞</td>
+            <td>20</td>
+        </tr>
+    </table>
+</body>
+
+</html>

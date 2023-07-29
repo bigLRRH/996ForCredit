@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        // ready函数作用是当前页面的html元素加载完成之后才会执行ready函数
+        // $(document).ready(function () {
+        //     $("#btn").on("click", () => {
+        //         $("div").css("background", "red");
+        //     });
+        // });
+
+        function my() {
+            $("div").css("background", "red");
+        }
+
+        // 简化版的执行ready函数
+        $(function () {
+            $("#btn").on("click", { id: 1 }, my);
+
+            $("#btn1").on("click", function () {
+                $("#btn").off("click", my);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>你好</div>
+    <input type="button" value="点我" id="btn" />
+    <input type="button" value="解绑事件" id="btn1" />
+</body>
+
+</html>

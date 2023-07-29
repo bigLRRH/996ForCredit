@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            $("<div>你好</div>").replaceAll($("p"));
+        }
+
+        function dian1() {
+            $("p").replaceWith($("<b>哈哈</b>"));
+        }
+    </script>
+</head>
+
+<body>
+    <p>Hello</p>
+    <p>cruel</p>
+    <p>World</p>
+    <input type="button" value="点我" onclick="dian()">
+    <input type="button" value="点我1" onclick="dian1()">
+</body>
+
+</html>

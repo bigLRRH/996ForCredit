@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                // children 直接子元素
+                $("div").children("span").css("background", "red");
+            });
+            $("#btn1").click(function () {
+                // find 全部子元素
+                $("div").find("span").css("background", "green");
+            });
+            $("#btn2").click(function () {
+                // find 全部子元素
+                $(".my").next().css("background", "green");
+            });
+            $("#btn3").click(function () {
+                // find 全部子元素
+                $(".my").nextAll().css("background", "green");
+            });
+            $("#btn4").click(function () {
+                $("#input1").parent().css("background", "#122112");
+            });
+            $("#btn5").click(function () {
+                $("#input1").parents("div").css("background", "#458468");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>Hello</p>
+    <div>
+        <span>Hello Again</span>
+        <span>Hello Again</span>
+        <span>Hello Again</span>
+        <span>Hello Again</span>
+        <p>哈哈</p>
+        <p>呵呵</p>
+        <p><span>1111</span></p>
+        <p><span>22</span></p>
+    </div>
+    <p>zzzz</p>
+    <p class="my">And Again</p>
+    <p>aaa</p>
+    <p>bbb</p>
+    <p>ccc</p>
+    <div>
+        你好
+        <div>
+            我好
+            <input type="text" name="" id="input1">
+        </div>
+    </div>
+    <input type="button" value="点我" id="btn" />
+    <input type="button" value="点我1" id="btn1" />
+    <input type="button" value="点我2" id="btn2" />
+    <input type="button" value="点我3" id="btn3" />
+    <input type="button" value="点我4" id="btn4" />
+    <input type="button" value="点我5" id="btn5" />
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 引入jQuery的库 -->
+<script src="./js/jquery-3.7.0.min.js"></script>
+<script>
+    function dian() {
+        $("div:contains('John')").css("background", "red");
+    }
+    function dian1() {
+        $("table td:empty").css("background", "green");
+    }
+    function dian2() {
+        $("div:has(p)").css("background", "yellow");
+    }
+    function dian3() {
+        $("div:parent").css("background", "blue");
+    }
+</script>
+</head>
+
+<body>
+
+    <div>John Resig</div>
+    <div>George Martin</div>
+    <div>Malcom John Sinclair</div>
+    <div>J.Ohn</div>
+    <table>
+        <tr>
+            <td>编号</td>
+            <td>姓名</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>张三</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>李四</td>
+        </tr>
+    </table>
+    <div>
+        <p>哈哈</p>
+    </div>
+    空的div：<div></div>
+    <input type="button" value="点我" onclick="dian()">
+    <input type="button" value="点我1" onclick="dian1()">
+    <input type="button" value="点我2" onclick="dian2()">
+    <inputtype="button"value="点我3"onclick="dian3()">
+</body>
+
+</html>

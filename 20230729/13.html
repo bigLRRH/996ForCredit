@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $(window).resize(function () {
+                console.log("resize事件被触发。。。。");
+            });
+            $(window).resize(function () {
+                console.log("scroll事件被触发。。。。");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="height: 2000px;background: aqua;"></div>
+</body>
+
+</html>

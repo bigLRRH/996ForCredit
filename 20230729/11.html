@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        function dian() {
+            $("div").html("<b>你好</b>");//添加的内容作为htmL解析
+            $("p").text("<b>你好</b>");//添加的内容作为普通文本处理
+            console.log($("input").val);//获取元素value值
+            $("input").val("mmmm");//设置元素的value值
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" value="aaa">
+    <input type="button" value="点我" onclick="dian()">
+</body>
+
+</html>
