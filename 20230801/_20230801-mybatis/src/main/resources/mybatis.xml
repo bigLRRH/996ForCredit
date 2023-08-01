@@ -3,10 +3,20 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--configuration表示mybatis的配置-->
 <configuration>
+    <!--    引用properties资源文件并解析-->
+    <properties resource="db.properties">
+
+    </properties>
     <settings>
         <!--指定MyBatis所用日志的具体实现，STDOUT_LOGGING表示控制台输出日志信息-->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <typeAliases>
+        <!--        如果太多的需要别名，这个配置方式不合适-->
+        <!--        <typeAlias type="com.tjetc.entity.User" alias="user"></typeAlias>-->
+        <!--        配置指定包下所有的类，都可以在映射文件中使用别名，别名是类名-->
+        <package name="com.tjetc.entity"/>
+    </typeAliases>
     <!--配置环境（可以配置多个环境）-->
     <environments default="dev">
         <!--开发环境-->
@@ -18,18 +28,18 @@
             <!--使用连接池技术-->
             <dataSource type="POOLED">
                 <!--数据库驱动-->
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="driver" value="${driver}"/>
                 <!--连接字符串-->
                 <property name="url"
-                          value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+                          value="${url}"/>
                 <!--数据库用户名-->
-                <property name="username" value="test"/>
+                <property name="username" value="${username}"/>
                 <!--数据库密码-->
-                <property name="password" value="123456"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
-<mappers>
-    <mapper resource="mapper/UserMapper.xml"></mapper>
-</mappers>
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"></mapper>
+    </mappers>
 </configuration>

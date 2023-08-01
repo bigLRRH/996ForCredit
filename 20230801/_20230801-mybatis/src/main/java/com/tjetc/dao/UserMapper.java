@@ -13,4 +13,31 @@ public interface UserMapper {
 
     //    insert
     int insert(User user);
+
+    //    update
+    int update(User user);
+
+    int delete(Long id);
+
+    //    一个实现三种sql
+    //    select * from `user`where `username`= 'jim' and`password`='123456";
+//    select * from `user`where `password`="4444";
+//    select * from `user`where `username`='jim';
+    List<User> queryListByUser(User user);
+
+    List<User> queryListByUser2(User user);
+
+    List<User> queryListByUser3(User user);
+
+    List<User> queryListByUser4(User user);
+
+    int updateByUser(User user);
+
+    //    参数是集合
+    List<User> queryListForList(List<Long> ids);
+
+    //    参数是数组
+//    mybatis中接口方法不能重载，也就是在接口中方法名称都是唯一的
+    List<User> queryListForArray(Long[] ids);
+
 }

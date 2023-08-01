@@ -4,21 +4,128 @@
 <!--html是xml的一种-->
 <!--namespace是命名空间,写对应接口的包名+类名-->
 <mapper namespace="com.tjetc.dao.UserMapper">
-<!--    四大标签 select update insert delete-->
-<!--    select 表示查询标签(sql语句在标签内) id写映射接口的方法名称 resultType写方法返回值类型(如果是集合就写元素类型)-->
-    <select id="queryList" resultType="com.tjetc.entity.User">
+    <!--    四大标签 select update insert delete-->
+    <!--    select 表示查询标签(sql语句在标签内) id写映射接口的方法名称 resultType写方法返回值类型(如果是集合就写元素类型)-->
+    <select id="queryList" resultType="user">
         select `username`, `password`
         from `user`
     </select>
-<!--    参数使用参数名称，如果是一个参数参数名称可以随意-->
-    <select id="queryById" resultType="com.tjetc.entity.User">
+    <!--    参数使用参数名称，如果是一个参数参数名称可以随意-->
+    <!--    实体类使用别名不区分大小写-->
+    <select id="queryById" resultType="com.tjetc.entity.User" parameterType="long">
         select `id`, `username`, `password`
         from `user`
         where id = #{id}
     </select>
-<!--    insert插入成功后要获取自增主键值-->
-<!--    useGeneratedKeys="true"表示使用自增主键keyProperty="id"主键值给实体类的哪个属性名-->
+    <!--    insert插入成功后要获取自增主键值-->
+    <!--    useGeneratedKeys="true"表示使用自增主键keyProperty="id"主键值给实体类的哪个属性名-->
+    <!--    因为insert方法传参数是一个实体类对象所以参数{实体类对象的属性名}-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-
+        insert into `user`(`username`, `password`)
+        values (#{username}, #{password})
     </insert>
+
+    <update id="update">
+        update `user`
+        set `password`=#{password}where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete
+        from `user`
+        where id = #{id}
+    </delete>
+
+    <!--    动态sql-->
+    <!--    <if>表示判断参数<if 中的username指的是参数名称或实体类的属性>-->
+    <select id="queryListByUser" resultType="user">
+        select *
+        from user
+        where 1=1
+        <if test="username!=null and username != ''">
+            and `username`=#{username}
+        </if>
+        <if test="password!=null and password != ''">
+            and `password`=#{password}
+        </if>
+    </select>
+
+    <select id="queryListByUser2" resultType="user">
+        select *
+        from user
+        where 1=1
+        <choose>
+            <when test="username!=null and username !=''">
+                and `username` = #{username}
+            </when>
+            <when test="password!=null and password != ''">
+                and `password`=#{password}
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <!--    where标签中条件成立 在sql中增加where关键字，条件不成立，在sql中不增加where关键字-->
+    <select id="queryListByUser3" resultType="user">
+        select *
+        from user
+        <where>
+            <if test="username!=null and username != ''">
+                and `username`=#{username}
+            </if>
+            <if test="password!=null and password != ''">
+                and `password`=#{password}
+            </if>
+        </where>
+    </select>
+
+    <!--    trim更强大可以实现where标签功能，但是不仅仅于此-->
+    <select id="queryListByUser4" resultType="user">
+        select *
+        from user
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="username!=null and username != ''">
+                and `username`=#{username}
+            </if>
+            <if test="password!=null and password != ''">
+                and `password`=#{password}
+            </if>
+        </trim>
+    </select>
+    <!--    参数是user对象，所以user中username和password都有可能为null或者不能为null-->
+    <update id="updateByUser">
+        update `user`
+        <set>
+            <if test="username!=null and username != ''">
+                `username`=#{username},
+            </if>
+            <if test="password!=null and password != ''">
+                `password`=#{password},
+            </if>
+        </set>
+        <where>
+            <if test="id!=null and id != 0">
+                id=#id
+            </if>
+        </where>
+    </update>
+
+    <select id="queryListForList" resultType="user">
+        select * from `user` where id in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryListForArray" resultType="user">
+        select *
+        from `user`
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>
