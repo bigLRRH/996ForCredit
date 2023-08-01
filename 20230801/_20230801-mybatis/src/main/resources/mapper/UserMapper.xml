@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--html是xml的一种-->
+<!--namespace是命名空间,写对应接口的包名+类名-->
+<mapper namespace="com.tjetc.dao.UserMapper">
+<!--    四大标签 select update insert delete-->
+<!--    select 表示查询标签(sql语句在标签内) id写映射接口的方法名称 resultType写方法返回值类型(如果是集合就写元素类型)-->
+    <select id="queryList" resultType="com.tjetc.entity.User">
+        select `username`, `password`
+        from `user`
+    </select>
+<!--    参数使用参数名称，如果是一个参数参数名称可以随意-->
+    <select id="queryById" resultType="com.tjetc.entity.User">
+        select `id`, `username`, `password`
+        from `user`
+        where id = #{id}
+    </select>
+<!--    insert插入成功后要获取自增主键值-->
+<!--    useGeneratedKeys="true"表示使用自增主键keyProperty="id"主键值给实体类的哪个属性名-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+
+    </insert>
+</mapper>
