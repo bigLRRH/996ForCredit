@@ -7,8 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class TestUser2 {
     @Test
@@ -94,6 +93,38 @@ public class TestUser2 {
 //        参数是集合
         Long[] ids = {1L, 2L, 3L, 4L};
         List<User> users = mapper.queryListForArray(ids);
+        System.out.println(users);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testQueryListForMap() throws IOException {
+        //        创建SqlSession对象
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        //        获取UserMapper对象
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+//        参数是集合
+        Map<String, Object> map = new HashMap<>();
+        Long[] ids = {1L, 2L, 3L, 4L};
+        map.put("ids", ids);
+
+        List<User> users = mapper.queryListForMap(map);
+
+        System.out.println(users);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testQueryList5() throws IOException {
+        //        创建SqlSession对象
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        //        获取UserMapper对象
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+//        参数是集合
+        Long[] ids = {1L, 2L, 3L, 4L};
+
+        List<User> users = mapper.queryList5("i",ids);
+
         System.out.println(users);
         sqlSession.close();
     }

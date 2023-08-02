@@ -21,7 +21,7 @@ public class Test {
         Class.forName("com.mysql.cj.jdbc.Driver");
 //        2、创建连接
         String url = "jdbc:mysql://localhost:3306/20230731_jdbc?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai" ;
-        Connection conn = DriverManager.getConnection(url, "test", "123456");
+        Connection conn = DriverManager.getConnection(url, "996forCredit", "123456");
 //        3、创建PreparedStatement并执行sgl语句
         String sql = "delete from `user` where id in(?,?,?,?);" ;
         PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -46,7 +46,7 @@ public class Test {
         Class.forName("com.mysql.cj.jdbc.Driver");
 //        2、创建连接
         String url = "jdbc:mysql://localhost:3306/20230731_jdbc?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai" ;
-        Connection conn = DriverManager.getConnection(url, "test", "123456");
+        Connection conn = DriverManager.getConnection(url, "996forCredit", "123456");
 //        3、创建PreparedStatement并执行sgl语句
         String sql = "update `user` set `password` = ? where id=?;" ;
         PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -71,7 +71,7 @@ public class Test {
         Class.forName("com.mysql.cj.jdbc.Driver");
 //        2、创建连接
         String url = "jdbc:mysql://localhost:3306/20230731_jdbc?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai" ;
-        Connection conn = DriverManager.getConnection(url, "test", "123456");
+        Connection conn = DriverManager.getConnection(url, "996forCredit", "123456");
 //        3、创建PreparedStatement并执行sgl语句
         String sql = "insert into `user` (`username`,`password`) values (?,?)" ;
         PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -100,7 +100,7 @@ public class Test {
         Class.forName("com.mysql.cj.jdbc.Driver");
         //2、创建连接
         String url = "jdbc:mysql://localhost:3306/20230731_jdbc?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai" ;
-        Connection conn = DriverManager.getConnection(url, "test", "123456");
+        Connection conn = DriverManager.getConnection(url, "996forCredit", "123456");
         //3、创建PreparedStatement并执行sgl语句
         String sql = "select `id`,`username`,`password` from `user` where `username`=? and `password`=?" ;
         PreparedStatement ps = conn.prepareStatement(sql);

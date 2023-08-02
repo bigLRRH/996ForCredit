@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration表示mybatis的配置-->
+<configuration>
+    <!--    引用properties资源文件并解析-->
+    <properties resource="db.properties">
+
+    </properties>
+    <settings>
+        <!--指定MyBatis所用日志的具体实现，STDOUT_LOGGING表示控制台输出日志信息-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <typeAliases>
+        <!--        如果太多的需要别名，这个配置方式不合适-->
+        <!--        <typeAlias type="com.tjetc.entity.User" alias="user"></typeAlias>-->
+        <!--        配置指定包下所有的类，都可以在映射文件中使用别名，别名是类名-->
+        <package name="com.tjetc.entity"/>
+    </typeAliases>
+    <!--配置环境（可以配置多个环境）-->
+    <environments default="dev">
+        <!--开发环境-->
+        <environment id="dev">
+            <!--使用jdbc事务管理-->
+            <transactionManager type="JDBC">
+
+            </transactionManager>
+            <!--使用连接池技术-->
+            <dataSource type="POOLED">
+                <!--数据库驱动-->
+                <property name="driver" value="${driver}"/>
+                <!--连接字符串-->
+                <property name="url"
+                          value="${url}"/>
+                <!--数据库用户名-->
+                <property name="username" value="${username}"/>
+                <!--数据库密码-->
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--        随看映射文件越来越多，配置上就会越来越多，很不友好-->
+        <!--        <mapper resource="mapper/IdCardMapper.xml"></mapper>-->
+        <!--        <mapper resource="mapper/PersonMapper.xml"></mapper>-->
+        <!--        使用包有限制：1、要保证项目编译之后映射接口和映射文件在同一个包下 2、映射文件和映射接口的名称要一致-->
+        <package name="com.tjetc.dao"/>
+    </mappers>
+</configuration>

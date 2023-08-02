@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tjetc.dao.IdCardMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into idcard (code, pid)
+        values (#{code}, #{person.id});
+    </insert>
+
+    <resultMap id="baseMap" type="idcard">
+        <id column="id" property="id"></id>
+        <result column="code" property="code"></result>
+        <!--        selectByPid根据Pid查询Person-->
+        <!--        column="pid"只的值queryById的查询结果集的pid列名-->
+        <association property="person" column="pid" select="selectByPid"></association>
+    </resultMap>
+
+    <select id="queryById" resultMap="baseMap">
+        select *
+        from idcard
+        where id = #{id};
+    </select>
+
+    <resultMap id="personBaseMap" type="person">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+    </resultMap>
+
+    <select id="selectByPid" resultMap="personBaseMap">
+        select *
+        from person
+        where id = #{pid};
+    </select>
+
+    <resultMap id="idCardMap" type="idcard">
+        <id column="id" property="id"></id>
+        <result column="code" property="code"></result>
+        <association property="person" resultMap="personMap2"></association>
+    </resultMap>
+    <resultMap id="personMap2" type="person">
+        <id column="pid" property="id"></id>
+        <result column="name" property="name"></result>
+    </resultMap>
+    <select id="queryById2" resultMap="idCardMap">
+        select c.id, c.code, p.id pid, p.`name`
+        from idcard c
+                 inner join person p on c.pid = p.id
+        where c.id = #{id }
+    </select>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tjetc.dao.TeacherMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into teacher (`name`)
+        values (#{name});
+    </insert>
+
+    <insert id="insertSC">
+        insert into sc(tid, cid)
+        values (#{tid}, #{cid})
+    </insert>
+
+    <!--    多对多嵌套select-->
+    <select id="queryById" resultMap="baseMap">
+        select *
+        from teacher
+        where id = #{id}
+    </select>
+    <resultMap id="baseMap" type="teacher">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <collection column="id" property="courses" ofType="course" select="selectCoursesByTid"></collection>
+    </resultMap>
+
+    <select id="selectCoursesByTid" resultMap="courseMap">
+        select c.id cid, c.`name` cname
+        from course c
+                 inner join sc on c.id = sc.cid
+        where sc.tid = #{tid};
+    </select>
+    <resultMap id="courseMap" type="course">
+        <id column="cid" property="id"></id>
+        <result column="cname" property="name"></result>
+    </resultMap>
+
+    <!--    多对多的嵌套resultMap-->
+    <select id="queryById2" resultMap="baseMap2">
+        select t.id tid, t.`name` tname, c.id cid, c.name cname
+        from teacher t
+                 left join sc on t.id = sc.tid
+                 left join course c on c.id = sc.cid
+        where t.id = #{tid};
+    </select>
+
+    <resultMap id="baseMap2" type="teacher">
+        <id column="tid" property="id"></id>
+        <result column="tname" property="name"></result>
+        <collection property="courses" ofType="course" resultMap="courseMap2"></collection>
+    </resultMap>
+
+    <resultMap id="courseMap2" type="course">
+        <id column="cid" property="id"></id>
+        <result column="cname" property="name"></result>
+    </resultMap>
+</mapper>

@@ -1,8 +1,10 @@
 package com.tjetc.dao;
 
 import com.tjetc.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     //    查询所有的用户，返回List集合，集合中每个元素是User对象
@@ -39,5 +41,9 @@ public interface UserMapper {
     //    参数是数组
 //    mybatis中接口方法不能重载，也就是在接口中方法名称都是唯一的
     List<User> queryListForArray(Long[] ids);
+
+    List<User> queryListForMap(Map<String,Object> ids);
+
+    List<User>queryList5(@Param("username") String username1, @Param("ids") Long[] ids1);
 
 }

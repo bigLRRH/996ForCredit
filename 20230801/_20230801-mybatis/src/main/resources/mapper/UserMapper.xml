@@ -4,16 +4,28 @@
 <!--html是xml的一种-->
 <!--namespace是命名空间,写对应接口的包名+类名-->
 <mapper namespace="com.tjetc.dao.UserMapper">
+    <!--    结果集映射-->
+    <!--    id是唯一标识，type表示结果集映射的实体类，可以使用别名-->
+    <!--    id标签是为主键 result标签为其他的列名-->
+    <!--    property表示实体类的属性 column表示结果集的列名 进行一一映射-->
+    <resultMap id="baseMap" type="user">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="u_password" property="password"></result>
+    </resultMap>
     <!--    四大标签 select update insert delete-->
     <!--    select 表示查询标签(sql语句在标签内) id写映射接口的方法名称 resultType写方法返回值类型(如果是集合就写元素类型)-->
-    <select id="queryList" resultType="user">
-        select `username`, `password`
+    <!--    resultType要求数据库查询的结果集的列名称要实体类的属性名一致，否则不能赋值-->
+    <!--    所以resultType能力和限制太多，不推荐使用-->
+    <!--    推荐使用resultMap-->
+    <select id="queryList" resultMap="baseMap">
+        select `username`, u_password
         from `user`
     </select>
     <!--    参数使用参数名称，如果是一个参数参数名称可以随意-->
     <!--    实体类使用别名不区分大小写-->
     <select id="queryById" resultType="com.tjetc.entity.User" parameterType="long">
-        select `id`, `username`, `password`
+        select `id`, `username`, u_password
         from `user`
         where id = #{id}
     </select>
@@ -21,13 +33,13 @@
     <!--    useGeneratedKeys="true"表示使用自增主键keyProperty="id"主键值给实体类的哪个属性名-->
     <!--    因为insert方法传参数是一个实体类对象所以参数{实体类对象的属性名}-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into `user`(`username`, `password`)
+        insert into `user`(`username`, u_password)
         values (#{username}, #{password})
     </insert>
 
     <update id="update">
         update `user`
-        set `password`=#{password}where id=#{id}
+        set u_password=#{password}where id=#{id}
     </update>
 
     <delete id="delete">
@@ -38,7 +50,7 @@
 
     <!--    动态sql-->
     <!--    <if>表示判断参数<if 中的username指的是参数名称或实体类的属性>-->
-    <select id="queryListByUser" resultType="user">
+    <select id="queryListByUser" resultMap="baseMap">
         select *
         from user
         where 1=1
@@ -46,11 +58,11 @@
             and `username`=#{username}
         </if>
         <if test="password!=null and password != ''">
-            and `password`=#{password}
+            and u_password=#{password}
         </if>
     </select>
 
-    <select id="queryListByUser2" resultType="user">
+    <select id="queryListByUser2" resultMap="baseMap">
         select *
         from user
         where 1=1
@@ -59,7 +71,7 @@
                 and `username` = #{username}
             </when>
             <when test="password!=null and password != ''">
-                and `password`=#{password}
+                and u_password=#{password}
             </when>
             <otherwise>
 
@@ -69,7 +81,7 @@
 
 
     <!--    where标签中条件成立 在sql中增加where关键字，条件不成立，在sql中不增加where关键字-->
-    <select id="queryListByUser3" resultType="user">
+    <select id="queryListByUser3" resultMap="baseMap">
         select *
         from user
         <where>
@@ -77,13 +89,13 @@
                 and `username`=#{username}
             </if>
             <if test="password!=null and password != ''">
-                and `password`=#{password}
+                and u_password=#{password}
             </if>
         </where>
     </select>
 
     <!--    trim更强大可以实现where标签功能，但是不仅仅于此-->
-    <select id="queryListByUser4" resultType="user">
+    <select id="queryListByUser4" resultMap="baseMap">
         select *
         from user
         <trim prefix="where" prefixOverrides="and | or">
@@ -91,7 +103,7 @@
                 and `username`=#{username}
             </if>
             <if test="password!=null and password != ''">
-                and `password`=#{password}
+                and u_password=#{password}
             </if>
         </trim>
     </select>
@@ -103,7 +115,7 @@
                 `username`=#{username},
             </if>
             <if test="password!=null and password != ''">
-                `password`=#{password},
+                u_password=#{password},
             </if>
         </set>
         <where>
@@ -113,19 +125,47 @@
         </where>
     </update>
 
-    <select id="queryListForList" resultType="user">
+    <select id="queryListForList" resultMap="baseMap">
         select * from `user` where id in
         <foreach collection="list" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
 
-    <select id="queryListForArray" resultType="user">
+    <select id="queryListForArray" resultMap="baseMap">
         select *
         from `user`
         where id in
         <foreach collection="array" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
+    </select>
+
+    <!--    参数名要与Map中key保持一致，collection值也是Map的中key的值-->
+    <select id="queryListForMap" resultMap="baseMap">
+        select *
+        from `user`
+        <where>
+            <if test="username!=null and username!=''">
+                and username like concat('%',#{username}.'%')
+            </if>
+            and id in
+            <foreach collection="ids" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+    <select id="queryList5" resultMap="baseMap">
+        select *
+        from `user`
+        <where>
+            <if test="username!=null and username!=''">
+                and username like concat('%',#{username},'%')
+            </if>
+            and id in
+            <foreach collection="ids" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
     </select>
 </mapper>
