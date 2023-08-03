@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--<bean>标签作用告诉spring创建对象，class表示对象的类型id唯一标识-->
+    <!--    没有配置scope默认是单例-->
+    <!--    scope="prototype"表示多例  scope="singleton"表示单例-->
+    <!--    init-method配置bean创建完成之后初始化方法-->
+    <!--    spring的context正常close之后才能触发destroy-method，另一个添加scope是单例-->
+    <!--    <bean name="userService" id="userService" class="com.tjetc.service.UserService" scope="singleton"-->
+    <!--          init-method="init" destroy-method="destroy"></bean>-->
+    <!--    配置组件的扫描com.tjetc本包及其子孙包下的所有的在类上标注有@Controller，@Service，@Repository，@Component注解的类，
+            spring会把标注了这些注解的类当作你配置的bean节点一样纳入spring容器管理-->
+    <context:component-scan base-package="com.tjetc"></context:component-scan>
+<!--    读取指定位置的properties文件，并解析-->
+    <context:property-placeholder location="classpath*:admin.properties"></context:property-placeholder>
+<!--配置2个bean就是创建两个对象-->
+<!--    单例体现在context.getBean-->
+    <bean id="userService1" class="com.tjetc.service.UserService"></bean>
+    <bean id="userService2" class="com.tjetc.service.UserService"></bean>
+</beans>

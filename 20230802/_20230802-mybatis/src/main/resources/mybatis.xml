@@ -17,6 +17,18 @@
         <!--        配置指定包下所有的类，都可以在映射文件中使用别名，别名是类名-->
         <package name="com.tjetc.entity"/>
     </typeAliases>
+    <!--    配置自定义类型处理器-->
+    <typeHandlers>
+        <!--        指定包下所以的类作为mybatis的类型处理器-->
+        <package name="com.tjetc.handlers"/>
+    </typeHandlers>
+
+    <!--    配置插件-->
+    <plugins>
+        <!--        配置分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
     <!--配置环境（可以配置多个环境）-->
     <environments default="dev">
         <!--开发环境-->
