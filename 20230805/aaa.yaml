@@ -1,0 +1,35 @@
+name: zhangsan
+
+person:
+  name: lisi
+  age: 21
+  email: lisi@gmail.com
+
+user: {id: 1, name: wangwu}
+
+names:
+  -  zhangsan
+  -  lisi
+  -  wangwu
+
+ages: [1,2,4,18]
+
+users:
+  - id: 1
+    name: wangwu
+    age: 21
+  - id: 2
+    name: lisi
+    age: 21
+  - id: 3
+    name: zhangsan
+    age: 21
+
+admins : [{id: 1, age: 21}, {id: 2, age:30}]
+
+str:
+  names: ["zhangsan", "lisi", "wangwu"]
+  ages:
+    -10
+    -20
+    -30

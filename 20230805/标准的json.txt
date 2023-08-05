@@ -1,0 +1,9 @@
+标准的json 属性名称必须加双引号 
+对象
+{"id":1,"username":"tom","password":"mm123"}
+{"arr":[12,18,20]}
+数组
+[12,15,18]
+
+[{"id":1,"username":"tom","password":"mm123"},
+{"id":2,"username":"jim","password":"aa456"}]
