@@ -1,0 +1,21 @@
+student:
+  #  因为#在配置文件表示注释，所以不支持SpEL表达式
+  studentName: zhangsan
+  age: 13
+  sex: false
+  birth: 1996-02-05
+  maps:
+    k1: v1
+    k2: v2
+  lists:
+    - 123@qq.com
+    - 223@gmail.com
+    - fasf@cc.com
+  book:
+    bookName: 红楼梦
+    author: 曹雪芹
+
+MyClass:
+  code: 2020
+  className: 一年级
+
