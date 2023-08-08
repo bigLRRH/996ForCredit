@@ -1,12 +1,17 @@
 spring:
-    datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/20230807_springboot_mybatis?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-      username: 996forCredit
-      password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/20230807_springboot_mybatis?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: 996forCredit
+    password: 123456
 
 mybatis:
-#  指定mapper映射文件的位置
+  #  指定mapper映射文件的位置
   mapper-locations: "classpath:mapper/*Mapper.xml"
-#   配置mybatis的别名
+  #   配置mybatis的别名
   type-aliases-package: com.tjetc.entity
+
+logging:
+  level:
+    #    写自己程序的包 日志级别是debug，这样控制台就可打印信息
+    com.tjetc: debug

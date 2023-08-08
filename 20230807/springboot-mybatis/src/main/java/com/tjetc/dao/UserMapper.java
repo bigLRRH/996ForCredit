@@ -11,4 +11,6 @@ public interface UserMapper {
     User selectById(Long id);
     int update(User user);
     int deleteById(Long id);
+
+    List<User> selectByUsernameAndPassword(String username, String password);
 }
