@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="js/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <!-- 用来显示数据与交互 -->
+    <div id="app">
+        <!-- 文本差值表达式 模板语法 {{数据变量或者常量名称}} -->
+        <h1>{{message}}</h1>
+        <!-- v-text指令插入纯文本 -->
+        <div v-text="rawHtml"></div>
+        <!-- v-html指令插入html代码 -->
+        <div v-html="rawHtml"></div>
+        <div v-once>v-once{{message}}</div>
+        
+    </div>
+</body>
+<script>
+    // Vue中两个属性createAPP，ref赋值{ createApp, ref } 对象里
+    // const obj = {};
+    // obj.createApp=Vue.createApp;
+    // obj.ref=Vue.ref;
+    const { createApp, ref } = Vue;
+    // 执行createApp函数返回app对象
+    // createApp函数需要一个对象作为参数
+    const app = createApp({
+        // setup是vue的声明周期钩子函数，执行时机：开始创建组件之前，创建的是数据和函数对象
+        // 组合式api
+        setup() {
+            // 定义数据，ref()函数来声明响应式状态
+            // 响应式是Vue的核心功能之一，即动跟踪JavaScript数据状态变化并在改变发生时响应式地更新DOM。
+            const message = ref("hello vue");
+            const rawHtml = ref("<a href='https://www.baidu.com'>百度</a>");
+            return {
+                // message:message
+                message, rawHtml
+            }
+        }
+    });
+    //绑定一个页面已经存在的DOM元素作为app对象挂载目标，让页面的DOM与app产生联系
+    app.mount("#app");
+</script>
+
+</html>

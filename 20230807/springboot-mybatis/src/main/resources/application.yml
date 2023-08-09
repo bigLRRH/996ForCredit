@@ -4,7 +4,10 @@ spring:
     url: jdbc:mysql://localhost:3306/20230807_springboot_mybatis?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: 996forCredit
     password: 123456
-
+  redis:
+    database: 1
+    host: 127.0.0.1
+    password: 123456
 mybatis:
   #  指定mapper映射文件的位置
   mapper-locations: "classpath:mapper/*Mapper.xml"
