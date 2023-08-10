@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .bgColor {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--  v-bind：属性名="变量或者常量名称"-->
+        <div v-bind:id="id" v-bind:dynamicid="id">绑定id属性</div>
+        <!-- v-bind简化方式：属性名="变量或者常量名称" -->
+        <div :id="id" :dynamicid="id">简化方式绑定id属性</div>
+        <!-- class 方式样式-->
+        <div :class="{active:isActive,bgColor:isBgcolor}">class方式样式</div>
+        <!-- 数组，数组使用三目运算符和Vue定义的变量联合使用 -->
+        <div :class="[isActive?'active':'',isBgcolor?'bgColor':'']">数组方式样式</div>
+        <div :style="{color:styleColor,fontSize:styleFontSize}">style内联样式</div>
+        <div :style="styleObj">style内联样式（变量是Obj）</div>
+    </div>
+</body>
+<script>
+    const { createApp, ref, reactive } = Vue;
+    const app = createApp({
+        setup() {
+            let id = ref(1);
+            const isActive = ref(true);
+            const isBgcolor = ref(true);
+            const styleColor = ref('blue');
+            const styleFontSize = ref('50px');
+            // ref 用在基本数据类型、字符串、数组、数字、布尔
+            // ref 也可以用于对象类型，内部用的就是reactive
+            // ref 问题 js操作的时候要.value 例如：isBgColor.value=true
+            // reactive用于引用类型：对象
+            // reactive 在js操作中不存在.value
+            // const styleObj = ref({ color: 'yellow', fontSize: '40px' })
+            const styleObj = reactive({ color: 'yellow', fontSize: '40px' })
+            return {
+                id, isActive, isBgcolor, styleColor, styleFontSize, styleObj
+            };
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

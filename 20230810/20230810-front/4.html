@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="item in arrays">{{item}}</div>
+        <div v-for="(item, index) in items" :key="index">{{index}}-{{item}}</div>
+        <div v-for="item in objs">{{item.id}}-{{item.name}}</div>
+        <div v-for="(a, b) in objs">{{b}}-{{a.id}}-{{a.name}}</div>
+    </div>
+</body>
+<script>
+    const { createApp, ref } = Vue;
+    const app = createApp({
+        setup() {
+            const items = ref(['a', 'b', 'c']);
+            const objs = ref([
+                { id: 1, name: "张三" },
+                { id: 2, name: "李四" },
+                { id: 3, name: "王五" },
+                { id: 4, name: "赵六" }
+            ])
+            return {
+                items, objs
+            };
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

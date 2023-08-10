@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" ref="myInput" value="你好" />
+        <ul>
+            <li v-for="(item, index) in items" :key="index" ref="myLis">{{item}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    const { createApp, ref, onMounted } = Vue;
+    const app = createApp({
+        setup() {
+            myInput = ref(null);
+            let myLis = ref([]);
+            const items = ref([10, 20, 30]);
+            // 钩子函数
+            onMounted(() => {
+                // myInput.value的值 就是input的dom对象
+                console.log(myInput.value.value);
+                console.log(myLis);
+                const domlis = myLis.value;
+                console.log(domlis);
+                for (index in domlis) {
+                    console.log(index);
+                    console.log(domlis);
+                }
+            });
+
+            return {
+                myInput,
+                items,
+                myLis
+            }
+        }
+    });
+    app.mount(" #app"); </script>
+
+</html>

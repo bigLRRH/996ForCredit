@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- -v-if='变量' 变量true显示标签 false标签不存在,所以也就不显示 -->
+        <div v-if="isBl">div1</div>
+        <!--  -->
+        <div v-if="isBl">我的div1</div>
+        <!-- v-else必须紧跟v-if 否则报错 -->
+        <!-- <p>我是p标签</p> -->
+        <div v-else>我的div2</div>
+        <div v-if="myLevel=='A'">A</div>
+        <div v-else-if="myLevel=='B'">B</div>
+        <div v-else-if="myLevel=='C'">C</div>
+        <div v-else>D</div>
+        <!-- v-show -->
+        <!-- v-if与v-show:变量为false v-if标签不存在    v-show 标签存在 使用样式 display none来隐藏标签 -->
+        <div v-show="isBl">我是v-show</div>
+    </div>
+</body>
+<script>
+    const { createApp, ref } = Vue;
+    const app = createApp({
+        setup() {
+            const isBl = ref(true);
+            const myLevel = ref("B");
+            return {
+                isBl, myLevel
+            }
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div>obj.count:{{obj.count}}</div>
+        <div>doubleCount:{{doubleCount}}</div>
+        <input type="button" value="obj自增" @click="btnClick()" />
+
+    </div>
+
+</body>
+<script>
+    const { createApp, ref, watch, reactive } = Vue;
+    const app = createApp({
+        setup() {
+            const obj = reactive({ count: 1 });
+            const doubleCount = ref(0);
+            const obj2 = reactive({ obj });
+            // 侦听obi属性count，失败，不能直接侦听对象的属性
+            // watch(obj.count, () => {
+            //     console.log("obj.count changed");
+            //     doubleCount.value = obj.count * 2;
+            // });
+            // 监听函数的返回值，函数的返回值是obj对象，改变obj.count的值不会改变obj对象不会触发回调
+            watch(
+                () => obj2.obj,
+                () => {
+                    console.log("obj2.obj changed");
+                    doubleCount.value = obj.count * 2;
+                },
+                // 可以使用第三个参数{deep：true}强制深度监听，属性的属性的属性...... 任何层发生改变就会侦听到，回调侦听函数
+                // warning: 影响性能(客户端或浏览器)
+                { deep: true }
+            );
+            // watch(() => obj.count, () => {
+            //     console.log("obj.count changed");
+            //     doubleCount.value = obj.count * 2;
+            // });
+            // （监听obj对象，改变对象的属性值，可以触发监听回调
+            // watch(obj, (oldValue, newValue) => {
+            //     console.log("obj.count changed");
+            //     console.log(`newValue===oldValue:${oldValue === newValue}`);
+            //     console.log(`newValue.count:${newValue.count}`);
+            //     console.log(`oldValue.count:${oldValue.count}`);
+            //     doubleCount.value = obj.count * 2;
+            // });
+            const btnClick = () => {
+                console.log("btnClick() called");
+                ++obj.count;
+            };
+            return {
+                obj, doubleCount, btnClick
+            };
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

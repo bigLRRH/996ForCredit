@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div>firstName:{{firstName}}</div>
+        <div>lastName:{{lastName}}</div>
+        <!-- 使用计算属性 -->
+        <div>计算属性fullName：{{fullName}}</div>
+        <div>计算属性fullName：{{fullName}}</div>
+        <div>执行函数：{{fullNameMethod()}}</div>
+        <div>执行函数：{{fullNameMethod()}}</div>
+        <div>调用计算属性：{{myFullName}}</div>
+        <div>调用计算属性：{{myFullName}}</div>
+        <input type="button" value="按钮" @click="btnClick()" />
+    </div>
+</body>
+<script>
+    const { createApp, ref, computed } = Vue;
+    const app = createApp({
+        setup() {
+            let firstName = ref("张");
+            let lastName = ref("三");
+            //计算属性(get)
+            // 计算属性是缓存的
+            let fullName = computed(() => {
+                console.log("fullName.get() called");
+                let fullName = `${firstName.value}${lastName.value}`;
+                return fullName;
+            });
+            // 函数计算没有缓存，效率低
+            const fullNameMethod = () => {
+                console.log("fullNameMethod() called");
+                let fullName = `${firstName.value}${lastName.value}`;
+                return fullName;
+            };
+            const btnClick = () => {
+                myFullName.value = "李,四";
+            };
+
+            const myFullName = computed({
+                get() {
+                    console.log("myFullName.get() called");
+                    let fullName = `${firstName.value}${lastName.value}`;
+                    return fullName;
+                },
+                set(value) {
+                    // 字符串用逗号分割返回数组
+                    // const array = value.split(',');
+                    // 注意：我们这里使用的是解构赋值语法
+                    [firstName.value, lastName.value] = value.split(',');
+
+                }
+            })
+
+            return {
+                firstName, lastName, fullName, btnClick, fullNameMethod, myFullName
+            }
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

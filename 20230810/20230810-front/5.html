@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div>message:{{message}}</div>
+        <!--  button添加click事件以及回调函数-->
+        <!-- v-on: 事件名称=回调函数名称 -->
+        <input type="button" value="按钮1" v-on:click="btnClick1" /><br>
+        <!-- v-on: 简写方式 @事件名称=回调函数名称 -->
+        <input type="text" @change="myChange" v-model="message" /> <br>
+        <input type="button" @click="btnClick2('我是按钮2')" value="按钮2">
+        <div>{{obj.username}}-{{obj.password}}</div>
+        <input type="button" @click="btnClick3()" value="按钮3" />
+        <div>{{obj2.username}}-{{obj2.password}}</div>
+        <input type="button" @click="btnClick4()" value="按钮4" />
+        <div v-for="obj in objs">
+            {{obj.username}}-{{obj.password}}
+        </div>
+        <input type="button" @click="btnClick5()" value="按钮5" />
+
+    </div>
+</body>
+<script>
+    const { createApp, ref, reactive } = Vue;
+    const app = createApp({
+        setup() {
+            let message = ref("hello");
+            const obj = ref({ username: "zhangsan", password: "123456" });
+            const obj2 = reactive({ username: "zhangsan", password: "123456" });
+            const objs = ref([
+                { username: "zhangsan", password: "123456" },
+                { username: "lisi", password: "123456" },
+                { username: "wangwu", password: "123456" }
+            ]);
+            // 回调函数
+            const btnClick1 = () => {
+                console.log("btnClick1() called");
+
+                // ref 改变或者获取ref的变量值要有.value
+                message.value = message.value === "hello" ? "world" : "hello";
+            }
+            const myChange = (event) => {
+                console.log("myChange() called");
+                message.value = "我好";
+            }
+            const btnClick2 = (param) => {
+                console.log(param);
+                message.value = param;
+            }
+            const btnClick3 = () => {
+                console.log("btnClick3() called");
+                obj.value.username = "lisi";
+                obj.value.password = "789";
+            }
+            const btnClick4 = () => {
+                console.log("btnClick4() called");
+                obj2.value.username = "wangwu";
+                obj2.value.password = "000000";
+            }
+            const btnClick5 = () => {
+                console.log("btnClick5() called");
+                objs.value[0].password = "000000";
+                objs.value[1].password = "000011";
+            }
+            return {
+                message, btnClick1, myChange, btnClick2, obj, btnClick3, obj2, objs
+            }
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

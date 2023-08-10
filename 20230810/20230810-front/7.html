@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div>x={{x}}</div>
+        <div>{{doubleX}}</div>
+        <div>{{y}}</div>
+        <input type="button" value="x自增" @click="change(ref(x))" />
+        <input type="button" value="y自增" @click="change(y)" />
+    </div>
+</body>
+<script>
+    const { createApp, ref, watch } = Vue;
+    const app = createApp({
+        setup() {
+            let x = ref(1);
+            let doubleX = ref(0);
+            let y = ref(1);
+            // watch 监听器,侦听的是x的值，x的值改变，会触发回调函数
+            watch(
+                x,
+                (newValue, oldValue) => {
+                    console.log("watch() called");
+                    console.log(`newValue:${newValue}`);
+                    console.log(`oldValue:${oldValue}`);
+                    doubleX.value = x.value * 2;
+                },
+                // 第三个参数{ immediate: true }表示立刻监听
+                { immediate: true }
+            );
+            watch(
+                () => x.value + y.value,
+                (sum) => {
+                    console.log("x+y changed");
+                    console.log(`x+y=${sum}`);
+                }
+            );
+            const sumFunction = () => {
+                return x.value + y.value;
+            };
+            watch(sumFunction, (sum) => {
+                console.log("sum changed");
+                console.log(`x+y=${sum}`);
+            });
+
+            // 
+            watch([x, () => y.value], ([newValue1, newValue2], [oldValue1, oldValue2]) => {
+                console.log("数组侦听");
+                console.log(`newValue1=${newValue1}`);
+                console.log(`newValue2=${newValue2}`);
+
+
+            });
+            // ! bug
+            const change = (variable) => {
+                console.log("change() called");
+                console.log(variable.value);
+                ++variable.value;
+                console.log(variable.value);
+            }
+
+            return {
+                x, doubleX, change, y
+            };
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>

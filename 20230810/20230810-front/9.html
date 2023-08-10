@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jQuery的库 -->
+    <script src="../../libs/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{message}}</div>
+        <input type="button" value="按钮" @click="btnClick" />
+        <input type="button" value="按钮2" @click="btnClick2" />
+    </div>
+</body>
+<script>
+    const { createApp, ref, unmount, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } = Vue;
+    const app = createApp({
+        setup() {
+            console.log("setup started");
+            const message = ref("hello");
+            const btnClick = () => {
+                message.value = "world" + new Date();
+            }
+            const btnClick2 = () => {
+                app.unmount();
+            }
+            // 钩子函数
+            onBeforeMount(() => {
+                console.log("组件挂载到节点上之前执行的函数======");
+            })
+            onMounted(() => {
+                console.log("组件挂载到节点上之前执行的函数======");
+            })
+            onBeforeUpdate(() => {
+                console.log("组件更新之前执行的函数======");
+            })
+            onUpdated(() => {
+                console.log("组件更新完成之后执行的函数======");
+            })
+            onBeforeUnmount(() => {
+                console.log("组件卸载之前执行的函数======");
+            })
+            onUnmounted(() => {
+                console.log("组件卸载完成后执行的函数======");
+            })
+            return {
+                message,
+                btnClick,
+                btnClick2
+            }
+
+        }
+    });
+    app.mount("#app");
+</script>
+
+</html>
