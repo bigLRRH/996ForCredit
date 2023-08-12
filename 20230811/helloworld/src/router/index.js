@@ -30,6 +30,43 @@ const routes = [
     path: '/mine',
     name: 'mine',
     component: () => import('@/views/Mine.vue')
+  },
+  {
+    path: '/myHome',
+    name: 'myHome',
+    component: () => import('@/views/MyHome.vue'),
+    // 配置子路由(嵌套路由)
+    children: [
+      {
+        // :username 表示参数占位
+        path: '/myHome/login/:username/:password',
+        name: 'login',
+        component: () => import('@/views/Login.vue')
+        // children:[]
+      },
+      {
+        path: '/myHome/register',
+        name: 'register',
+        component: () => import('@/views/Register.vue')
+      }
+    ]
+  },
+  {
+    path: '/student',
+    name: 'student',
+    component: () => import('@/views/Student.vue')
+  },
+  {
+    path: '/myStore',
+    name: 'myStore',
+    component: () => import('@/views/MyStore.vue'),
+    children: [
+      {
+        path: '/myStore1',
+        name: 'myStore1',
+        component: () => import('@/views/MyStore1.vue')
+      }
+    ]
   }
 ]
 

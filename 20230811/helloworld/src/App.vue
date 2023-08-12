@@ -4,12 +4,13 @@
     <router-link to="/about">About</router-link>|
     <router-link to="/main">Main</router-link>|
     <router-link to="/message">Message</router-link>|
-    <router-link to="/mine">Mine</router-link>
+    <router-link to="/mine">Mine</router-link>|
+    <router-link to="/myHome">myHome</router-link>
   </nav>
   <!-- 路由显示区 -->
   <!-- 写多次就会显示多次同一个组件 -->
   <router-view />
-  <router-view />
+  <!-- <router-view /> -->
 </template>
 
 <style>
