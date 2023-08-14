@@ -67,6 +67,21 @@ const routes = [
         component: () => import('@/views/MyStore1.vue')
       }
     ]
+  },
+  {
+    path: '/myElement',
+    name: 'myElement',
+    component: () => import('@/views/MyElement.vue')
+  },
+  {
+    path: '/myLogin',
+    name: 'myLogin',
+    component: () => import('@/views/MyLogin.vue')
+  },
+  {
+    path:'/myUsers',
+    name:'myUsers',
+    component: () => import('@/views/MyUsers.vue')
   }
 ]
 

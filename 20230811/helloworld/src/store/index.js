@@ -50,12 +50,7 @@ export default createStore({
   //6、插件
   plugins: [
     createPersistedState({
-      reducer(val) {
-        return {
-          count: val.count,
-          id: val.user.id
-        }
-      }
+      paths: ["count", "user.id"]
     })
   ]
 })

@@ -9,7 +9,7 @@
     </resultMap>
     <select id="selectList" resultMap="baseMap" >
         select id,`username`,`password`
-        from `user`;
+        from `user`
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
