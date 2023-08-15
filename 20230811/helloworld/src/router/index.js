@@ -79,9 +79,14 @@ const routes = [
     component: () => import('@/views/MyLogin.vue')
   },
   {
-    path:'/myUsers',
-    name:'myUsers',
+    path: '/myUsers',
+    name: 'myUsers',
     component: () => import('@/views/MyUsers.vue')
+  },
+  {
+    path: "/myImage",
+    name: "myImage",
+    component: () => import('@/views/MyImage.vue')
   }
 ]
 

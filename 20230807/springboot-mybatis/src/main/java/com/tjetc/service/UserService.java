@@ -3,6 +3,7 @@ package com.tjetc.service;
 import com.github.pagehelper.PageInfo;
 import com.tjetc.common.JsonResult;
 import com.tjetc.entity.User;
+import com.tjetc.entity.Admin;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface UserService {
     void test2();
 
     JsonResult login(String username, String password);
+
+ Boolean saveAdminAndUpdateUser(Admin admin,Long userId,String userPassword);
 }

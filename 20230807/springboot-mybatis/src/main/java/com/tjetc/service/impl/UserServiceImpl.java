@@ -3,16 +3,22 @@ package com.tjetc.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tjetc.common.JsonResult;
+import com.tjetc.dao.AdminMapper;
 import com.tjetc.dao.UserMapper;
 import com.tjetc.entity.User;
+import com.tjetc.entity.Admin;
 import com.tjetc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    AdminMapper adminMapper;
     @Autowired
     private UserMapper userMapper;
 
@@ -82,6 +88,29 @@ public class UserServiceImpl implements UserService {
         }
 // 正确
         return new JsonResult(0, "", users.get(0));
+    }
+
+    //    因为操作多张表会引起事务不一致
+//    @Transactional 保证事务 （如果事务出现运行时异常就会回滚）
+    @Transactional
+    @Override
+    public Boolean saveAdminAndUpdateUser(Admin admin, Long userId, String userPassword) {
+//        save Admin
+        adminMapper.insert(admin);
+//        update user
+        User user = userMapper.selectById(userId);
+        if (user == null) {
+//            return false;
+            throw new RuntimeException("User not found");
+        }
+//        update
+        user.setPassword(userPassword);
+        int rows = userMapper.update(user);
+        if (rows <= 0) {
+//            return false;
+            throw new RuntimeException("Update failed");
+        }
+        return true;
     }
 
 

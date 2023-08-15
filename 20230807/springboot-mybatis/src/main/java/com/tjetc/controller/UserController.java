@@ -2,7 +2,9 @@ package com.tjetc.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tjetc.common.JsonResult;
+import com.tjetc.entity.Admin;
 import com.tjetc.entity.User;
+import com.tjetc.enums.EnumSex;
 import com.tjetc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -88,5 +90,19 @@ public class UserController {
             session.setAttribute("user", user);
         }
         return result;
+    }
+
+    @RequestMapping("saveAndUpdate")
+    public JsonResult saveAdminAndUpdateUser(String num) {
+        Admin admin = new Admin();
+        admin.setUsername("tom"+num);
+        admin.setPassword(num);
+        admin.setSex(EnumSex.MALE);
+        boolean bl = userService.saveAdminAndUpdateUser(admin,2L,"00000");
+        if(bl){
+            return  new JsonResult(1, "success",bl);
+        }else{
+            return  new JsonResult(1, "fail",bl);
+        }
     }
 }

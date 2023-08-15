@@ -41,7 +41,7 @@ const myPage = () => {
         console.log(res.data.total);
         users.value = res.data.list;
         totalCount.value = res.data.total;
-    });
+    })
 };
 
 const changePageNum = (val) => {

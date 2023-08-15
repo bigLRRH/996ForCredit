@@ -13,6 +13,14 @@ module.exports = defineConfig({
         pathRewrite: {
           '^/api': ''// /api重写成 空字符串
         }
+      },
+      '/image': {
+        target: 'http://localhost:8081',//代理请求 base url
+        changeOrigin: true,//允许跨域
+        // 路径重写
+        // pathRewrite: {
+        //   '^/image': '' //// /image重写成 空字符串
+        // }
       }
     }
   }

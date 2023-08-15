@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tjetc.dao.AdminMapper">
+    <!--java类型 String    jdbc类型（数据库 varchar）    mybatis已经给做了处理-->
+    <!--自定义 java类型 EnumSex（自定义枚举）  jdbc类型（数据库 int）  进行类型处理 -->
+    <!--sex 指定自定义的类型处理器-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into admin(`username`,`password`,sex)
+        values(#{username},#{password},#{sex,typeHandler=com.tjetc.handlers.EnumSexTypeHandler})
+    </insert>
+
+    <select id="queryById" resultMap="baseMap">
+        select id,username,password,sex from admin where id=#{id}
+    </select>
+    <resultMap id="baseMap" type="admin">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <!--使用自定义类型处理器-->
+        <result column="sex" property="sex" typeHandler="com.tjetc.handlers.EnumSexTypeHandler"></result>
+    </resultMap>
+    
+    <select id="queryList" resultMap="baseMap">
+        select id,username,password,sex from admin
+    </select>
+</mapper>
