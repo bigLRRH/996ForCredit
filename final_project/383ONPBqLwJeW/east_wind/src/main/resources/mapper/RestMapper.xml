@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ew.dao.RestMapper">
+    <select id="getAll" resultType="java.util.Map">
+        SELECT *
+        FROM ${tableName}
+    </select>
+    <select id="getById" resultType="java.util.Map">
+        SELECT *
+        FROM ${tableName}
+        WHERE id = ${id}
+    </select>
+    <insert id="insert" parameterType="java.util.Map">
+        INSERT INTO ${tableName} (
+        <foreach collection="columnMap" item="value" index="key" separator=",">
+            ${key}
+        </foreach>
+        )
+        VALUES (
+        <foreach collection="columnMap" item="value" index="key" separator=",">
+            #{value}
+        </foreach>
+        )
+    </insert>
+    <update id="update">
+        UPDATE ${tableName}
+        SET
+        <foreach collection="columnMap" item="value" index="key" separator=",">
+            ${key}=#{value}
+        </foreach>
+        WHERE
+        id=#{id}
+    </update>
+    <delete id="deleteById">
+        DELETE
+        FROM ${tableName}
+        WHERE id = ${id}
+    </delete>
+</mapper>
